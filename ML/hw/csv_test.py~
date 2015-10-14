@@ -1,0 +1,5 @@
+import csv  
+f = open('twse20000104.csv', 'r')  
+for row in csv.reader(f):  
+    print row  
+f.close()  

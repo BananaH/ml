@@ -1,0 +1,130 @@
+class Stock:
+	def __init__(self,name,date, opening,closing,highest,lowest,volume,adj_close):
+		self.name = name;
+		self.date = date;
+		self.opening = opening;
+		self.closing = closing;
+		self.highest = highest;
+		self. lowest =  lowest;
+		self.volume = volume;
+		self.adj_close = adj_close;
+'''	def set_all(self,name,date, opening,closing,highest,lowest,volume,adj_close):
+		self.name = name;
+		self.date = date;
+		self.opening = opening;
+		self.closing = closing;
+		self.highest = highest;
+		self. lowest =  lowest;
+		self.volume = volume;
+		self.adj_close = adj_closing;
+'''
+
+class files(list):
+	def __init__(self,name,date):
+		self.name = name
+		self.date = date
+	def set_all(self,name,date):
+		self.name = name
+		self.date = date
+
+
+def list_sort(list):
+	for i in range(len(list)):
+		for j in range(i+1,len(list)):
+			if list[i].date > list[j].date:
+				temp = list[i].date 
+				list[i].date = list[j].date
+				list[j].date = temp
+				temp = list[i].name
+				list[i].name = list[j].name
+				list[j].name = temp
+	
+import json
+import os
+
+jsonIn = []
+FileName =[]
+file_list = []
+Stock_con = []
+Stock_list = []
+NULL = unicode('NULL')
+ID = unicode('id')
+folder = '../json/'
+
+#fin = open(file_name,'r')
+
+j=0
+k=0
+
+target = raw_input(">>>Start:")
+target =target[0:4:1]+'-'+target[4:6:1]+'-'+target[6:8:1]+'.json'
+end = raw_input(">>>End:")
+end =end[0:4:1]+'-'+end[4:6:1]+'-'+end[6:8:1]+'.json'
+days = raw_input(">>>Days:")
+saved = raw_input(">>>Output path:")
+
+
+for file_tuple in os.walk(folder):#filesNames is a list of all files in the direction of folder
+	j+=1
+
+
+
+for i in range(len(file_tuple[2])):
+	FileName.append(file_tuple[2][i])
+	file_list.append(files(FileName[i],int(FileName[i][0:4:1]+FileName[i][5:7:1]+FileName[i][8:10:1])))
+#			print j
+
+#print file_list[0].date
+list_sort(file_list)
+
+#print len(file_tuple[2])
+#print len(file_list)
+
+
+#target = '2015-10-02.json'
+fin = open(folder+target,"r")
+
+
+#for Stock_tuple in fin:
+#print Stock_tuple
+jsonIn.append(json.load(fin))
+
+print type(jsonIn[0].keys())
+
+for i in jsonIn[0].keys():
+	Stock_list.append(i)
+
+#print type(jsonIn[0][i]['open'] == NULL)
+
+j=0
+for i in Stock_list:	#name,date, opening,closing,highest,lowest,volume,adj_close
+#	print jsonIn[0][i]['open'],jsonIn[0][i]['close'],jsonIn[0][i]['high'],jsonIn[0][i]['low'],jsonIn[0][i]['volume'],jsonIn[0][i]['adj_close']
+	print j, '-',i, 
+	if i == ID:
+		print ID
+	elif (jsonIn[0][i]['open'] == NULL) | (jsonIn[0][i]['close'] == NULL)| (jsonIn[0][i]['high'] == NULL) | (jsonIn[0][i]['low'] == NULL) | (jsonIn[0][i]['volume'] == NULL) | (jsonIn[0][i]['adj_close'] == NULL) :
+		print ':NULL'
+	else:
+		print ':Saved'
+		Stock_con.append(Stock(int(i),int(target[0:4]+target[5:7]+target[8:10]),float(jsonIn[0][i]['open']),float(jsonIn[0][i]['close']),float(jsonIn[0][i]['high']),float(jsonIn[0][i]['low']),float(jsonIn[0][i]['volume']),float(jsonIn[0][i]['adj_close'])))
+	j+=1
+
+
+
+
+#print jsonIn[0]['1616']['volume']
+
+#print json.load(fin)
+
+
+	
+#Stock_tuple.append(Stock_tuple[2][i])
+
+
+
+
+
+
+
+
+
