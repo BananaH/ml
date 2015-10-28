@@ -1,0 +1,10 @@
+/home/mlb/res/stock/twse/json/
+
+rsv	TD	TK	KD	KD_diff
+Accuracy = 63.4876% (10205/16074) (classification)
+
+10*[open	close	high	low	vol	adj_close]	rsv	TD	TK	KD	KD_diff
+Accuracy = 62.9588% (10120/16074) (classification)
+
+10*[open	close	high	low	vol	adj_close]
+Accuracy = 51.7482% (8318/16074) (classification)

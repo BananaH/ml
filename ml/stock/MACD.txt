@@ -1,0 +1,21 @@
+每日需求指數(Demand Index，DI)，DI = (最高價 + 最低價 + 2 × 收盤價) ÷ 4。 (註1) 
+首日EMA12 = 12天內DI 總和 ÷ 12 
+首日EMA26 = 26天內DI 總和 ÷ 26 
+當日平滑修正值 EMA12 = [前一日EMA12 × (12 - 1) + 今日DI × 2] ÷ (12+1)
+簡化後 EMA12 = 前一日EMA12 × (11/13) + 今日DI × 2/13 
+當日平滑修正值 EMA26 = [前一日EMA26 × (26 - 1) + 今日DI × 2] ÷ (26+1)
+簡化後 EMA26 = 前一日EMA26 × (25/27) + 今日DI × 2/27 
+差離值DIF = 12日EMA - 26日EMA 
+首日MACD = 9天內DIF總和 ÷ 9 
+MACD = (前一日MACD × (9 - 1) + 今日DIF × 2) ÷ (9 + 1)
+簡化後 MACD = (前一日MACD × 8/10 + 今日DIF × 2/10 
+OSC = DIF - MACD 
+
+
+
+先行計算出快速線(n日EMA)與慢速線(m日EMA,n<m)。以此兩個數值，再計算兩者間的「差離值」(DIF),再計算DIF之x日EMA,此即MACD。
+nEMA=(前一日nEMA*(n-1)＋今日收盤價×2)/(n+1)
+mEMA=(前一日mEMA*(m-1)＋今日收盤價×2)/(m+1)
+DIF=nEMA－mEMA
+xMACD=(前一日xMACD*(x-1)＋DIF×2)/(x+1)
+一般會將DIF-MACD繪柱形圖(BAR)
